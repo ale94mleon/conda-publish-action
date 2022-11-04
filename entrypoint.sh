@@ -34,7 +34,7 @@ build_package(){
     
     # Build for Linux
     build_cmd="conda build -c $(echo $(join_by ' -c ' $INPUT_CHANNELS)) --output-folder . ."
-    eval build_cmd
+    eval $build_cmd
 
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
