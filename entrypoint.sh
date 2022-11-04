@@ -24,8 +24,17 @@ check_if_meta_yaml_file_exists() {
 }
 
 build_package(){
+    # Define a function to add the chanels
+    function join_by {
+    local d=${1-} f=${2-}
+    if shift 2; then
+        printf %s "$f" "${@/#/$d}"
+    fi
+    }
+    
     # Build for Linux
-    conda build -c conda-forge -c pytorch -c fcakyon -c districtdatalabs --output-folder . .
+    build_cmd="conda build -c $(echo $(join_by ' -c ' $INPUT_CHANNELS)) --output-folder . ."
+    eval build_cmd
 
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
