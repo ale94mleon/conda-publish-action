@@ -10,6 +10,9 @@ inputs:
     default: '.'
   anacondatoken:
     description: 'Anaconda access token'
+  channels:
+    description: 'Channels on which the package will be build ['conda-forge/pytorch/fcakyon/districtdatalabs]'
+    default: 'conda-forge pytorch fcakyon districtdatalabs'
   platforms:
     description: 'Platforms to publish [osx/linux/win]'
     default: 'win osx linux'
